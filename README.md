@@ -1,4 +1,4 @@
-# Detector de Personaes en tiempo real con YOLOv4
+# Detector de objetos (personas) en tiempo real con YOLOv4
 
 Este repositorio contiene un algoritmo para detectar objetos en imágenes y videos utilizando YOLOv4.
 
