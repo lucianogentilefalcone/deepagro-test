@@ -9,10 +9,25 @@ logging.basicConfig(filename='object_detection.log', level=logging.INFO,
 # Cargar los archivos de configuración y pesos pre-entrenados de YOLOv4
 net = cv2.dnn.readNetFromDarknet('yolov4-tiny.cfg', 'yolov4-tiny.weights')
 
+# Verificar si se pudo cargar la configuración
+if net.empty():
+    logging.error('No se pudo cargar la configuración de YOLOv4')
+    exit()
+
 # Obtener los nombres de las clases
 classes = []
-with open('coco.names', 'r') as f:
-    classes = [line.strip() for line in f.readlines()]
+filename = 'coco.names'
+with open(filename, 'r') as f:
+    lines = f.readlines()
+    if lines:
+        # El archivo tiene líneas, procesar el contenido
+        classes = [line.strip() for line in lines]
+        # Resto del código...
+    else:
+        # El archivo está vacío, registrar el evento
+        logging.warning(f"El archivo '{filename}' está vacío")
+
+
 
 # Configurar la captura de video
 cap = cv2.VideoCapture('PEOPLE WALKING IN AIRPORT.mp4')  # Ruta al archivo de video
